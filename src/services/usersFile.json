@@ -1,0 +1,14 @@
+[
+    {
+        "id": "test",
+        "email": "test@mail.com",
+        "name": "testUserName",
+        "password": "testPass."
+    },
+    {
+        "id": "e40d4417-34ec-4557-b189-4d4350c51e3e",
+        "email": "example2@mail.com",
+        "name": "UserName",
+        "password": "$2b$10$qo6v/hL/qqTWdEvYhPPAx.SKn7y5ifPCYmpm5EARu/zqCZLx/bkji"
+    }
+]
