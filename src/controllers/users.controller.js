@@ -1,52 +1,66 @@
 const usersService = require('../services/users.service')
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
-
+const { validationResult } = require('express-validator');
 
 class Users {
 
+
     async login(req, res) {
-        const loginData = {
-            email: req.body.email,
-            password: req.body.password
-        }
 
-        const token = await usersService.login(loginData);
+        const validationErrors = validationResult(req);
 
-        if (token) {
-            res.send(token)
+        if (validationErrors.isEmpty()) {
+
+            const loginData = {
+                email: req.body.email,
+                password: req.body.password
+            }
+
+            const token = await usersService.login(loginData);
+
+            res
+                .status(200)
+                .send(token)
+
         } else {
             res
                 .status(400)
-                .json({ message: "error" });
+                .send({
+                    errors: validationErrors.array()
+                });
         }
     }
 
     async registration(req, res) {
 
-        const saltRounds = 10;
+        const validationErrors = validationResult(req);
 
-        const userBody = {
-            id: uuidv4(),
-            email: req.body.email,
-            name: req.body.name,
-            password: await bcrypt.hash(req.body.password, 10)
-        }
+        if (validationErrors.isEmpty()) {
 
-        const results = await usersService.registration(userBody)
+            const saltRounds = 10;
 
-        if (results) {
+            const userBody = {
+                id: uuidv4(),
+                email: req.body.email,
+                name: req.body.name,
+                password: await bcrypt.hash(req.body.password, 10)
+            }
+
+            const results = await usersService.registration(userBody)
+
+
             res
                 .status(201)
-                .json({ message: "user created" });
+                .send({ message: "user created" });
         } else {
             res
                 .status(400)
-                .json({ message: "The user's email address already exists" });
+                .send({
+                    errors: validationErrors.array()
+                });
         }
     }
-
-
 
 
 

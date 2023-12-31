@@ -50,7 +50,9 @@ class UsersService {
             return token;
 
         } catch (err) {
+
             console.log(err);
+
         }
     }
 
