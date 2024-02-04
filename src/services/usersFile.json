@@ -1,1 +1,38 @@
-[{"id":"test","email":"test@mail.com","name":"testUserName","password":"testPass."},{"id":"e40d4417-34ec-4557-b189-4d4350c51e3e","email":"example2@mail.com","name":"UserName","password":"$2b$10$qo6v/hL/qqTWdEvYhPPAx.SKn7y5ifPCYmpm5EARu/zqCZLx/bkji"},{"id":"214a82b7-493c-468e-ac56-a118cf1c6ee3","email":"example3@mail.com","name":"aaaaaaaaaa","password":"$2b$10$91jW8Rjxdckov/pKA0o0NOpylHCp2TK/pEAxBYlM.SAkEEsgvmIle"},{"id":"fe0c48e8-070a-466e-a834-42fa726aee09","email":"example4@mail.com","name":"asdasd","password":"$2b$10$Rhx0zt685jpYHPzdnTqWfeCkkUOklz1snEQKbghNJZowIiXPmx7SG"},{"id":"c3094f60-2be9-4f93-9e07-4ae356c39a15","email":"example5@mail.com","name":"asdasd","password":"$2b$10$QoGgk98ijtTcKsMVQs4OXutYorDFpkGFzdfin502M8zxoWb1ek2fK"}]
+[
+    {
+        "id": "test",
+        "email": "test@mail.com",
+        "name": "testUserName",
+        "password": "testPass."
+    },
+    {
+        "id": "e40d4417-34ec-4557-b189-4d4350c51e3e",
+        "email": "example2@mail.com",
+        "name": "UserName",
+        "password": "$2b$10$qo6v/hL/qqTWdEvYhPPAx.SKn7y5ifPCYmpm5EARu/zqCZLx/bkji"
+    },
+    {
+        "id": "214a82b7-493c-468e-ac56-a118cf1c6ee3",
+        "email": "example3@mail.com",
+        "name": "aaaaaaaaaa",
+        "password": "$2b$10$91jW8Rjxdckov/pKA0o0NOpylHCp2TK/pEAxBYlM.SAkEEsgvmIle"
+    },
+    {
+        "id": "fe0c48e8-070a-466e-a834-42fa726aee09",
+        "email": "example4@mail.com",
+        "name": "asdasd",
+        "password": "$2b$10$Rhx0zt685jpYHPzdnTqWfeCkkUOklz1snEQKbghNJZowIiXPmx7SG"
+    },
+    {
+        "id": "c3094f60-2be9-4f93-9e07-4ae356c39a15",
+        "email": "example5@mail.com",
+        "name": "asdasd",
+        "password": "$2b$10$QoGgk98ijtTcKsMVQs4OXutYorDFpkGFzdfin502M8zxoWb1ek2fK"
+    },
+    {
+        "id": "ca197e11-73b2-4bbc-921b-6d569e11f96d",
+        "email": "adminadmin@mail.com",
+        "name": "admin",
+        "password": "$2b$10$AD8Mr.z0rfbSTsgpDMg6Aes5zZyZEpe1oAABRRMlT0FALClJr/SZ2"
+    }
+]

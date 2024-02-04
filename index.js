@@ -6,15 +6,11 @@ const swaggerOptions = require('./swaggerSpec')
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3010;
 
 app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOptions));
 app.use('/', routes);
 
-app.listen(port, () => {
-    console.log(`server start on ${port}`)
-})
-
+module.exports = app;
 
 

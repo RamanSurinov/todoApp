@@ -29,8 +29,7 @@ class UsersService {
             const existingUser = allUsers.find(user => user.email === loginData.email);
 
             if (!existingUser) {
-                return false;
-                //   return res.status(401).json({ message: "Неверный email или пароль" });
+                return res.status(401).json({ message: "Неверный email или пароль" });
             }
 
             const isPasswordValid = await bcrypt.compare(
@@ -39,8 +38,7 @@ class UsersService {
             );
 
             if (!isPasswordValid) {
-                return false
-                //res.status(401).json({ message: "Неверный email или пароль" });
+                return res.status(401).json({ message: "Неверный email или пароль" });
             }
 
             const token = jwt.sign({ id: existingUser.id }, process.env.SECRET_KEY, {

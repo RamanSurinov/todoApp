@@ -17,6 +17,8 @@ class Users {
                 password: req.body.password
             }
 
+
+
             const token = await usersService.login(loginData);
 
             res
