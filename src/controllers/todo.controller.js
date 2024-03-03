@@ -48,8 +48,12 @@ class todoController {
     }
 
     async deleteTask(req, res) {
+
         const taskId = req.params.id;
         const result = await todoService.deleteTask(taskId)
+
+        console.log(req.body)
+
         if (result) {
             res.send({
                 result

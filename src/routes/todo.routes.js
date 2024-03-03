@@ -98,7 +98,7 @@ router.patch('/:id', todoController.changeTaskField);
  * /todo/{id}/isComplited:
  *   patch:
  *     summary: Частичное обновление таски
- *     description: Обновляет часть данных таски по его ID.
+ *     description: Обновляет поле таски title, а так же меняет поле isComplited
  *     tags:
  *       - Todos
  *     security:
