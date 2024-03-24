@@ -66,7 +66,7 @@ router.post('/', todoController.createTodo);
  * /todo/{id}:
  *   patch:
  *     summary: Частичное обновление таски
- *     description: Обновляет часть данных таски по его ID.
+ *     description: Обновляет часть данных таски по его ID. Уникальным идентификатором таски является поле taskCreationDate
  *     tags:
  *       - Todos
  *     security:
