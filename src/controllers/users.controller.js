@@ -12,18 +12,14 @@ class Users {
 
         if (validationErrors.isEmpty()) {
 
-            const loginData = {
+            req.loginData = {
                 email: req.body.email,
                 password: req.body.password
             }
 
+            const token = await usersService.login(req, res);
 
-
-            const token = await usersService.login(loginData);
-
-            res
-                .status(200)
-                .send(token)
+            if (token) res.status(200).send(token)
 
         } else {
             res
@@ -39,22 +35,26 @@ class Users {
         const validationErrors = validationResult(req);
 
         if (validationErrors.isEmpty()) {
+            try {
 
-            const saltRounds = 10;
+                const saltRounds = 10;
 
-            const userBody = {
-                id: uuidv4(),
-                email: req.body.email,
-                name: req.body.name,
-                password: await bcrypt.hash(req.body.password, 10)
+                req.userBody = {
+                    id: uuidv4(),
+                    email: req.body.email,
+                    name: req.body.name,
+                    password: await bcrypt.hash(req.body.password, saltRounds)
+                }
+
+                const results = await usersService.registration(req, res)
+
+                if (results) res.status(201).send({ message: "user created" });
+
+            } catch (err) {
+
+                res.status(400).send(err.message);
+                return
             }
-
-            const results = await usersService.registration(userBody)
-
-
-            res
-                .status(201)
-                .send({ message: "user created" });
         } else {
             res
                 .status(400)

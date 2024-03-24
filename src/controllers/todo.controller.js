@@ -2,9 +2,13 @@ const todoService = require('../services/todo.service');
 
 class todoController {
 
-    async getTodo(res, req) {
-        const result = await todoService.getAllTodo()
-        req.send({ data: result })
+    async getTodo(req, res) {
+
+        const result = await todoService.getAllTodoByUserId(req.userId.id)
+
+        if (result) {
+            res.status(200).send(result)
+        }
     }
 
     async createTodo(req, res) {
@@ -15,7 +19,8 @@ class todoController {
 
         const taskBody = {
             title: title,
-            isComplited: false
+            isComplited: false,
+            userId: req.userId
         }
 
         const newBody = await todoService.createTodo(taskBody);
@@ -35,8 +40,9 @@ class todoController {
         const reqPath = req.path;
         const taskId = req.params.id;
         const newField = req.body;
+        const id = req.userId.id
 
-        const result = await todoService.changeTaskField(reqPath, taskId, newField);
+        const result = await todoService.changeTaskField(reqPath, taskId, newField, id);
 
         if (result) {
             res.send({

@@ -22,23 +22,27 @@ class UsersService {
     }
 
 
-    async login(loginData) {
+    async login(req, res) {
         try {
             const allUsers = await this.getAllUsers();
 
-            const existingUser = allUsers.find(user => user.email === loginData.email);
+            console.log(req.loginData)
+
+            const existingUser = allUsers.find(user => user.email === req.loginData.email);
 
             if (!existingUser) {
-                return res.status(401).json({ message: "Неверный email или пароль" });
+                res.status(400).json({ message: "Неверный email или пароль" });
+                return
             }
 
             const isPasswordValid = await bcrypt.compare(
-                loginData.password,
+                req.loginData.password,
                 existingUser.password
             );
 
             if (!isPasswordValid) {
-                return res.status(401).json({ message: "Неверный email или пароль" });
+                res.status(400).json({ message: "Неверный email или пароль" });
+                return
             }
 
             const token = jwt.sign({ id: existingUser.id }, process.env.SECRET_KEY, {
@@ -54,30 +58,31 @@ class UsersService {
         }
     }
 
-    async registration(userBody) {
+    async registration(req, res) {
         try {
             const allUsers = await this.getAllUsers();
 
-            const existingUser = allUsers.find(user => user.email === userBody.email);
+            const existingUser = allUsers.find(user => user.email === req.userBody.email);
+
+            console.log(existingUser)
 
             if (existingUser) {
-                return false
+                res.status(400).json({ message: "Неверный email или пароль" });
+                return
             }
 
-            allUsers.push(userBody);
+            allUsers.push(req.userBody);
 
-            const result = await fsPromises.writeFile(
+            await fsPromises.writeFile(
                 path.join(__dirname, 'usersFile.json'),
                 JSON.stringify(allUsers)
             );
 
-            console.log(result)
-
-            return true;
+            return true
 
         } catch (err) {
 
-            console.log(err);
+            console.log(err)
 
         }
     }
